@@ -1,0 +1,29 @@
+.controller-pages {
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-template-areas:
+    "navbar header"
+    "sidebar main";
+    margin: 0;
+}
+
+@media (min-width: 80em) {
+    .controller-pages {
+        grid-template-columns:  1fr 4fr;
+    }
+
+  }
+
+
+main {
+    display: grid;
+    grid-template-areas:
+    "new-post trending"
+    "posts suggested-community"
+    "posts friends";
+}
+
+.navbar {
+    grid-area: navbar;
+    width: 100%;
+}

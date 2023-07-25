@@ -1,0 +1,28 @@
+<div id="<%= dom_id group %>">
+  <p>
+    <strong>Name:</strong>
+    <%= group.name %>
+  </p>
+
+  <% if group.users.include?(current_user)%>
+    <% button_to 'Leave', leave_group_path(group), method: :delete %>
+  <% else %>
+    <% button_to 'Join', join_group_path(group), method: :post %>
+  <% end %>
+
+  <h3>Members: </h3>
+  <ul>
+    <% group.users.each do |user| %>
+      <li><%= user.displayname%></li>
+    <% end %>
+  </ul>
+
+  <h3>Posts: </h3>
+  <% group.posts.each do |post| %>
+    <%= link_to post.title, group_post_path(group, post)%>
+    <p>Posted by: <%= post.user.email %></p>
+  <% end %>
+
+
+
+</div>
