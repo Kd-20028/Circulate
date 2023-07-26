@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search', to: "search#index"
   root 'pages#home'
   resources :posts
   resources :group_ownerships

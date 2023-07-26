@@ -1,0 +1,37 @@
+<style>
+   /* Add some basic styles to the table and its elements */
+
+
+</style>
+<h1 class="search-header"><%= pluralize(@groups.count, "Result")%></h1>
+<%= render "search/form" %>
+
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+            <th><%= sort_link(@query, :name, "Name", default_order: :asc)%></th>
+            <th><%= sort_link(@query, :owners, "Owners",)%></th>
+            <th><%= sort_link(@query, :users, "Members")%></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @groups.each do |group|%>
+            <tr>
+                <td> <%= link_to group.name, group%> </td>
+                <td>
+                    <% group.owners.each do |owner| %>
+                    <%= owner.displayname%>
+                    <% end %>
+                </td>
+                <td>
+                    <% group.users.each do |user| %>
+                    <%= user.displayname%> |
+                    <% end %>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

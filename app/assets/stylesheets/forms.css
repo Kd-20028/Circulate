@@ -121,7 +121,7 @@ a {
   gap: 10px;
 }
 
-.log-button, .sign-up-button, .log-link, .cancel-account-button {
+.log-button, .sign-up-button, .log-link, .cancel-account-button, .search-button {
   background-color: var(--clr-primary-400);
   border: none;
   border-radius: var(--size-200);
