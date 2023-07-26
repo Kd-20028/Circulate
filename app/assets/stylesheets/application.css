@@ -148,3 +148,12 @@ body {
     display: grid;
     background-color: var(--clr-neutral-100);
 }
+
+.controller-groups {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  grid-template-areas:
+  "sidebar header"
+  "sidebar main";
+  margin: 0;
+}

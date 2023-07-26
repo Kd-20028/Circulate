@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
+
   end
 
   # GET /groups/1/edit
@@ -25,7 +26,11 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to group_url(@group), notice: "Group was successfully created." }
+        @group.users << current_user
+        @group.owners << current_user
+
+
+        format.html { redirect_to root_path, notice: "Group was successfully created." }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new, status: :unprocessable_entity }

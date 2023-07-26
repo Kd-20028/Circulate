@@ -62,6 +62,11 @@
       </div>
       <% current_user.groups.each do |group|%>
         <%= link_to group.name, group_path(group)%>
+        <% if  group.owners.any? %>
+          <p>Owner: <%= group.owners.first.displayname %></p>
+        <% else %>
+          <p>No owner found for this group.</p>
+      <% end %>
       <% end %>
     </div>
 

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
   resources :posts
+  resources :group_ownerships
   resources :groups do
     resources :posts
     post 'join', on: :member
