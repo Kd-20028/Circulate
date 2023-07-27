@@ -8,7 +8,6 @@
     gap: 20px;
     background-color: white;
     border-right: 1px solid lightgray;
-
   }
 
   .nav-links {
@@ -184,6 +183,7 @@
     border: 1px solid lightgray;
     height: 100%;
     padding: 5px;
+    border-radius: .5rem;
   }
 
 

@@ -3,8 +3,15 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :posts
   resources :group_ownerships
+
+
+
   resources :groups do
     resources :posts
+    resources :events do
+      put :approve, on: :member
+      put :reject, on: :member
+    end
     post 'join', on: :member
     delete 'leave', on: :member
   end

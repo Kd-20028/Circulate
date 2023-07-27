@@ -1,0 +1,14 @@
+<h1><%= @event.title %></h1>
+<p><strong>Description:</strong> <%= @event.description %></p>
+<p><strong>Start Time:</strong> <%= @event.start_time %></p>
+<p><strong>End Time:</strong> <%= @event.end_time %></p>
+
+<% if @event.group.owners.include?(current_user)%>
+  <% if @event.pending? %>
+    <%= button_to "Approve", approve_group_event_path(@event), method: :put %>
+    <%= button_to "Reject", reject_group_event_path(@event), method: :put %>
+  <% end %>
+<% end %>
+
+<p><strong>Group:</strong> <%= link_to @group.name, @group %></p>
+
