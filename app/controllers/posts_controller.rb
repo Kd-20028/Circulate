@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_group, only: [:new, :create]
+
 
   # GET /posts or /posts.json
   def index
@@ -12,6 +14,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    @group = Group.find(params[:group_id])
     @post = Post.new
   end
 
@@ -21,8 +24,8 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @group = Group.find(params[:group_id])
-    @post = group.posts.build(post_params.merge(user_id: current_user.id))
+    @post = @group.posts.build(post_params.merge(user: current_user))
+
 
     respond_to do |format|
       if @post.save
@@ -53,19 +56,45 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def new_public
+    @post = Post.new
+  end
+
+  def create_public
+    @post = Post.new(post_params.merge(user_id: current_user.id))
+
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to root_path, notice: "Public post was successfully created." }
+        format.json { render :show, status: :created, location: @post }
+      else
+        format.html { render :new_public, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_group
+      @group = Group.find(params[:group_id])
+    end
+
+    def set_user
+      @user = current_user
+    end
+
     def set_post
       @post = Post.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :group_id, :user_id)
+      params.require(:post).permit(:body, images: [])
     end
 end

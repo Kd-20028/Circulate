@@ -4,6 +4,7 @@ class Group < ApplicationRecord
   has_many :owners, through: :group_ownerships, source: :user
   has_many :posts
   has_many :events
+  has_one_attached :avatar
 
   def self.ransackable_attributes(auth_object = nil)
     ["name"]

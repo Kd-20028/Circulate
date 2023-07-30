@@ -1,21 +1,18 @@
-<style>
-  input#file-upload-button {
-    background-color: red;
-  }
-</style>
+<!-- app/views/posts/_public_form.html.erb -->
 
-<%= form_with(model: [@group, @post], class: "post-form") do |form| %>
-  <% if post.errors.any? %>
+<%= form_with(model: @post, url: create_public_posts_path, class: "public-post-form") do |form| %>
+  <% if @post.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this public post from being saved:</h2>
 
       <ul>
-        <% post.errors.each do |error| %>
+        <% @post.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
+
 
 
   <div class="post-whole">

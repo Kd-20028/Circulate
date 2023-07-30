@@ -14,10 +14,12 @@
   </head>
 
   <body class="controller-<%= params[:controller] %>">
-    <% if !current_page?(new_user_session_path) && !current_page?(new_user_registration_path) && !current_page?(search_path) %>
+    <% if !current_page?(new_user_session_path) && !current_page?(new_user_registration_path)  %>
       <%= render "layouts/navbar" %>
     <% end %>
     <%= yield %>
+
+
   </body>
 
 </html>

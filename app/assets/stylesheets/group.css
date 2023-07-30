@@ -1,0 +1,227 @@
+.controller-groups {
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-template-areas:
+    "sidebar main"
+    "sidebar main";
+    margin: 0;
+  }
+
+.group-main {
+    margin: 2rem;
+    display: grid;
+    grid-area: main;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 2fr 1fr 1fr;
+    gap: 1rem;
+    grid-template-areas:
+    "name-card posts"
+    "events posts"
+    "members posts";
+}
+
+.name-card,
+.group-posts,
+.group-events,
+.group-members {
+    border: 1px solid lightgrey;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+
+}
+
+.name-card {
+    grid-area: name-card;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.group-posts {
+    grid-area: posts;
+    display: flex;
+    flex-direction: column;
+    max-height: 1000px;
+    overflow-y: auto;
+
+}
+
+.group-events {
+    grid-area: events;
+
+}
+
+.group-members {
+    grid-area: members;
+}
+
+h3 {
+    font-weight: bold;
+    color: var(--clr-primary-400);
+}
+
+.controller-groups .leave-group-button {
+    background-color: red;
+    align-self: center;
+    font-size: 1rem;
+}
+
+.member-list {
+    display: flex;
+    list-style-type: none;
+    gap: .5rem;
+    align-items: center;
+}
+
+
+
+.member-list img, .group-profile-pic {
+    border-radius: 100%;
+}
+
+.group-profile-pic {
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    top: 50%;
+}
+
+.name-card-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+}
+
+.destroy-button, .controller-groups .edit-button, .controller-groups .leave-group-button {
+    border-radius: 12px;
+    background-color: white;
+    border: 1px solid lightgray;
+    font-size: 1rem;
+    width: 2rem;
+    height: 2rem;
+    color: white;
+    text-decoration: none;
+    margin: none;
+    padding: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-card-buttons form {
+    width: 2rem;
+}
+
+.name-card-buttons svg {
+    fill: black;
+    width: fit-content;
+    height: fit-content;
+}
+
+.name-card-buttons svg:hover {
+    fill: rgba(0, 0, 0, 0.497);
+}
+
+.name-card-upper, .name-card-lower {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.name-card-lower {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid lightgray;
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.member-username {
+    font-size: .8rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.group-post {
+    border: 1px solid lightgray;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.post-form {
+    height: 30%;
+    padding: .5rem;
+    border-radius: .5rem;
+    border: 1px solid lightgray;
+    margin-bottom: .5rem;
+}
+
+
+#post_body {
+    width: 100%;
+    height: 100px;
+    border: none;
+    padding: .5rem;
+
+}
+
+#post_title {
+    height: 20px;
+    border: none;
+}
+
+.post-submit {
+    width: 60px;
+    border-radius: 1rem;
+    bottom: 90px;
+    left: 800px;
+    align-self: flex-end;
+}
+
+.post-submit input {
+    background-color: var(--clr-primary-400);
+    color: white;
+}
+
+.user-posted, .user-posted-info {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+.user-posted-info {
+    justify-content: space-between;
+}
+
+.post-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.custom-file-input {
+    padding-left: 5px;
+}
+
+.custom-submit-button {
+    border: none;
+    background-color: transparent;
+}

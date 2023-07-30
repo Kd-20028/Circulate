@@ -147,9 +147,16 @@ body {
     font-family: "Gill Sans";
     display: grid;
     background-color: var(--clr-neutral-100);
-}
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+    margin: 0;
+  }
 
-.controller-groups {
+
+.controller-events {
   display: grid;
   grid-template-columns: 2fr 4fr;
   grid-template-areas:
@@ -157,3 +164,13 @@ body {
   "sidebar main";
   margin: 0;
 }
+
+.controller-search {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  grid-template-areas:
+  "sidebar header"
+  "sidebar main";
+  margin: 0;
+}
+

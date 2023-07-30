@@ -1,14 +1,6 @@
-.controller-pages {
-    display: grid;
-    grid-template-columns: 2fr 4fr;
-    grid-template-areas:
-    "navbar header"
-    "sidebar main";
-    margin: 0;
-}
 
 @media (min-width: 80em) {
-    .controller-pages {
+    .controller-pages, .controller-events, .controller-search, .controller-groups {
         grid-template-columns:  1fr 4fr;
     }
 

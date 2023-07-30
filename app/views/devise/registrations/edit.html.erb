@@ -1,4 +1,13 @@
 <style>
+  body {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  grid-template-areas:
+  "sidebar header"
+  "sidebar main";
+  margin: 0;
+}
+
   .input-section{
     justify-content: center;
   }
@@ -22,6 +31,11 @@
       <div class="field">
         <%= f.label :displayname %><br />
         <%= f.text_field :displayname %>
+      </div>
+
+     <div class="field">
+        <%= f.label :avatar %><br />
+        <%= f.file_field :avatar %>
       </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -56,5 +70,3 @@
 </div>
 
 
-
-<%= link_to "Back", :back %>

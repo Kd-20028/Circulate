@@ -59,12 +59,12 @@ body {
   background-color: var(--clr-neutral-100);
 }
 
-img {
+.full-logo {
   height: var(7rem);
   transition: all 0.3s ease-in-out 0s;
 }
 
-img:hover {
+.full-logo:hover {
   cursor: default;
   transform: rotate(360deg);
   transition: all 0.3s ease-in-out 0s;
@@ -121,7 +121,7 @@ a {
   gap: 10px;
 }
 
-.log-button, .sign-up-button, .log-link, .cancel-account-button, .search-button {
+.log-button, .sign-up-button, .log-link, .cancel-account-button, .search-button, .leave-group-button {
   background-color: var(--clr-primary-400);
   border: none;
   border-radius: var(--size-200);
@@ -129,7 +129,7 @@ a {
   color: white;
 }
 
-.log-link {
+.log-link{
   text-decoration: none;
   width: 50%;
   display: flex;
@@ -144,7 +144,7 @@ a {
   background-color: hsl(24, 100%, 49%);
 }
 
-.sign-up-button, .cancel-account-button {
+.sign-up-button, .cancel-account-button, .leave-group-button {
   height: 50px;
   width: 50%;
   text-decoration: none;

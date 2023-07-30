@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   get 'search', to: "search#index"
   root 'pages#home'
-  resources :posts
+  resources :posts do
+    collection do
+      get :new_public
+      post :create_public
+    end
+  end
+
   resources :group_ownerships
 
 

@@ -1,6 +1,6 @@
 <%= search_form_for(@query, url: search_url, method: :get, class: "search_form") do |f| %>
     <div class="searcy">
-        <%= f.search_field :name_cont, placeholder: "Search", class: 'search-input' %>
+        <%= f.search_field :name_cont, placeholder: "Find Circles", class: 'search-input' %>
         <%= f.submit "", :type => :image, :src => image_path("mag-glass.svg"), class: "search-button" %>
     </div>
 <% end %>

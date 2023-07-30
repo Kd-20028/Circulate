@@ -1,14 +1,84 @@
-<h1><%= @event.title %></h1>
-<p><strong>Description:</strong> <%= @event.description %></p>
-<p><strong>Start Time:</strong> <%= @event.start_time %></p>
-<p><strong>End Time:</strong> <%= @event.end_time %></p>
+<style>
+  /* Center the content */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
 
-<% if @event.group.owners.include?(current_user)%>
-  <% if @event.pending? %>
-    <%= button_to "Approve", approve_group_event_path(@event), method: :put %>
-    <%= button_to "Reject", reject_group_event_path(@event), method: :put %>
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+h1 {
+  color: #007bff;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.approve-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.reject-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.group-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.group-link:hover {
+  text-decoration: underline;
+}
+</style>
+
+<div class="container">
+  <h1><%= @event.title %></h1>
+  <p><strong>Description:</strong> <%= @event.description %></p>
+  <p><strong>Start Time:</strong> <%= @event.start_time %></p>
+  <p><strong>End Time:</strong> <%= @event.end_time %></p>
+
+  <% if @event.group.owners.include?(current_user) %>
+    <% if @event.pending? %>
+      <div class="btn-container">
+        <%= button_to "Approve", approve_group_event_path(@event), method: :put, class: "btn approve-btn" %>
+        <%= button_to "Reject", reject_group_event_path(@event), method: :put, class: "btn reject-btn" %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
 
-<p><strong>Group:</strong> <%= link_to @group.name, @group %></p>
-
+  <p><strong>Group:</strong> <%= link_to @group.name, @group, class: "group-link" %></p>
+</div>

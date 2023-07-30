@@ -1,6 +1,6 @@
 
 <div class="info-section">
-  <%= image_tag ("full_logo.svg")%>
+  <%= image_tag ("full_logo.svg"), class:"full-logo"%>
   <div>Connect, Share, and Circle Up with Others!</div>
 </div>
 
@@ -21,6 +21,10 @@
       <div class="field">
         <%= f.label :displayname, "Display Name" %><br />
         <%= f.text_field :displayname %>
+      </div>
+      <div class="field">
+        <%= f.label :avatar %><br />
+        <%= f.file_field :avatar %>
       </div>
       <div class="field">
         <%= f.label :password %>

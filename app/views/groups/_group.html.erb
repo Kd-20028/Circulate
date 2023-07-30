@@ -1,37 +1,110 @@
-<div id="<%= dom_id group %>">
-  <p>
-    <strong>Name:</strong>
-    <%= group.name %>
-  </p>
+<div id="<%= dom_id group %>" class="group-main">
 
-  <% if group.users.include?(current_user)%>
-    <% button_to 'Leave', leave_group_path(group), method: :delete %>
-  <% else %>
-    <% button_to 'Join', join_group_path(group), method: :post %>
-  <% end %>
+  <div class="name-card">
+     <div class="name-card-upper">
+        <%= image_tag(group.avatar, class: "group-profile-pic")%>
+    </div>
+    <div class="name-card-lower">
+      <p>
+        <h3><%= group.name %></h3>
+      </p>
+      <div><%= group.users.count %> Members</div>
+      <div>
+        Owners:
+        <% group.owners.each do |owner|%>
+          <%= owner.displayname %><br>
+        <% end %>
+      </div>
+       <div class="name-card-buttons">
+       <% if group.users.include?(current_user)%>
+          <%= button_to leave_group_path(group), method: :delete, class: "leave-group-button" do %>
+            <%= render "groups/leave-svg"%>
+          <% end %>
+       <% else %>
+          <%= button_to join_group_path(group), method: :post, class: "join-group-button" do %>
+            <%= render "groups/join-svg"%>
+          <% end %>
+       <% end %>
+       <% if group.owners.include?(current_user)%>
+            <%= button_to @group, method: :delete, class: "destroy-button" do%>
+              <%= render "groups/destroy-svg"%>
+            <% end %>
+            <%= button_to edit_group_path(@group), method: :get, class: "edit-button" do %>
+              <%= render "groups/edit-svg"%>
+            <% end %>
+        <% end %>
+       </div>
+    </div>
 
-  <h3>Members: </h3>
-  <ul>
-    <% group.users.each do |user| %>
-      <li><%= user.displayname%></li>
+  </div>
+
+
+  <div class="group-members">
+    <h3>Members</h3>
+    <ul>
+      <% group.users.limit(5).each do |user| %>
+        <li class="member-list">
+         <% if user.avatar.attached? %>
+          <%= image_tag(user.avatar, style: "height: 2rem; width: 2rem;")%>
+         <% end %>
+        <div class="user-info">
+          <%= user.displayname%>
+          <span class="member-username"><%= user.username %></span>
+        </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="group-posts">
+    <h3>Posts </h3>
+    <%= render partial: "posts/form", locals: { group: @group, post: @post } %>
+    <% if group.posts.any? %>
+     <% group.posts.each do |post| %>
+      <div class="group-post">
+         <% if group.users.include?(current_user) && post.user.present?%>
+          <div class="user-posted-info">
+            <div class="user-posted">
+              <%= image_tag(post.user.avatar, class: "profile-pic", style: "height: 2rem; width: 2rem; border-radius: 100%;")%>
+              <p><%= post.user.displayname %></p>
+            </div>
+            <div>
+              <% seconds_from_creation = Date.today.to_time - post.created_at.to_time%>
+              <p>Days ago: <%= days_from_creation = (seconds_from_creation / 86400).to_i %></p>
+            </div>
+          </div>
+        <% end %>
+        <div> <%= post.body %> </div>
+         <% post.images.each do |image| %>
+           <%= image_tag image, style: "width: 100%;"%>
+          <% end %>
+       <div class="name-card-buttons">
+       <% if post.user == current_user%>
+            <%= button_to post, method: :delete, class: "destroy-button" do%>
+              <%= render "groups/destroy-svg"%>
+            <% end %>
+            <%= button_to edit_post_path(post), method: :get, class: "edit-button" do%>
+              <%= render "groups/edit-svg"%>
+            <% end %>
+        <% end %>
+       </div>
+      </div>
     <% end %>
-  </ul>
+    <% end %>
+  </div>
 
-  <h3>Posts: </h3>
-  <% group.posts.each do |post| %>
-    <%= link_to post.title, group_post_path(group, post)%>
-    <p>Posted by: <%= post.user.email %></p>
-  <% end %>
+   <div class="group-events">
+     <h3>Events </h3>
+       <%= link_to "New Event", new_group_event_path(group) %>
 
-   <h3>Events: </h3>
-<%= link_to "New Event", new_group_event_path(group) %>
-
-  <% group.events.each do |event| %>
-    <%= link_to event.title, group_event_path(group, event) %>
-    <p>Created by: <%= event.user.email %></p>
+       <% group.events.limit(3).each do |event| %>
+      <%= link_to event.title, group_event_path(group, event) %>
+      <p>Created by: <%= event.user.email %></p>
+        <% end %>
+   </div>
 
 
-  <% end %>
+
 
 
 </div>

@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :groups
   has_many :group_ownerships
   has_many :owned_groups, through: :group_owernships, source: :group
+  has_one_attached :avatar
+
 
   validates :username, uniqueness: true
   validates :displayname, presence: true
