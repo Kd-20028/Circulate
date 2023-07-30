@@ -30,6 +30,11 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @group = @event.group
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream # This will handle the Turbo Stream request
+    end
   end
 
   def approve

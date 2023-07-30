@@ -11,14 +11,21 @@
     <%= stylesheet_link_tag "home", "data-turbo-track": "reload" %>
 
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+
+
+
+
+
   </head>
 
   <body class="controller-<%= params[:controller] %>">
+
     <% if !current_page?(new_user_session_path) && !current_page?(new_user_registration_path)  %>
       <%= render "layouts/navbar" %>
     <% end %>
     <%= yield %>
-
+      <%= turbo_frame_tag "remote_modal", target: "_top" %>
 
   </body>
 

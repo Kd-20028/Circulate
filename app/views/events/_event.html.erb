@@ -35,6 +35,7 @@ strong {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  gap: 10px;
 }
 
 .btn {
@@ -65,20 +66,19 @@ strong {
 }
 </style>
 
-<div class="container">
-  <h1><%= @event.title %></h1>
-  <p><strong>Description:</strong> <%= @event.description %></p>
-  <p><strong>Start Time:</strong> <%= @event.start_time %></p>
-  <p><strong>End Time:</strong> <%= @event.end_time %></p>
 
-  <% if @event.group.owners.include?(current_user) %>
-    <% if @event.pending? %>
-      <div class="btn-container">
-        <%= button_to "Approve", approve_group_event_path(@event), method: :put, class: "btn approve-btn" %>
-        <%= button_to "Reject", reject_group_event_path(@event), method: :put, class: "btn reject-btn" %>
-      </div>
-    <% end %>
-  <% end %>
-
-  <p><strong>Group:</strong> <%= link_to @group.name, @group, class: "group-link" %></p>
-</div>
+    <div class="container">
+      <h1><%= @event.title %></h1>
+      <p><strong>Description:</strong> <%= @event.description %></p>
+      <p><strong>Start Time:</strong> <%= @event.start_time %></p>
+      <p><strong>End Time:</strong> <%= @event.end_time %></p>
+      <% if @event.group.owners.include?(current_user) %>
+        <% if @event.pending? %>
+          <div class="btn-container">
+            <%= button_to "Approve", approve_group_event_path(@event), method: :put, class: "btn approve-btn" %>
+            <%= button_to "Reject", reject_group_event_path(@event), method: :put, class: "btn reject-btn" %>
+          </div>
+        <% end %>
+      <% end %>
+      <p><strong>Group:</strong> <%= link_to @group.name, @group, class: "group-link" %></p>
+    </div>

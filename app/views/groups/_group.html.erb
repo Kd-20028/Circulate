@@ -96,11 +96,10 @@
    <div class="group-events">
      <h3>Events </h3>
        <%= link_to "New Event", new_group_event_path(group) %>
-
        <% group.events.limit(3).each do |event| %>
-      <%= link_to event.title, group_event_path(group, event) %>
-      <p>Created by: <%= event.user.email %></p>
-        <% end %>
+         <%= link_to event.title, group_event_path(group, event), data: { turbo_frame: "remote_modal" } %>
+        <p>Created by: <%= event.user.email %></p>
+      <% end %>
    </div>
 
 
