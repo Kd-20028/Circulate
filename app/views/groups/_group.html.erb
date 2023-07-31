@@ -58,9 +58,9 @@
 
   <div class="group-posts">
     <h3>Posts </h3>
-    <%= render partial: "posts/form", locals: { group: @group, post: @post } %>
+    <%= render partial: "posts/form", locals: { group: @group, post: @post }  %>
     <% if group.posts.any? %>
-     <% group.posts.each do |post| %>
+    <% group.posts.where.not(created_at: nil).sort_by(&:created_at).reverse.each do |post| %>
       <div class="group-post">
          <% if group.users.include?(current_user) && post.user.present?%>
           <div class="user-posted-info">
@@ -68,17 +68,7 @@
               <%= image_tag(post.user.avatar, class: "profile-pic", style: "height: 2rem; width: 2rem; border-radius: 100%;")%>
               <p><%= post.user.displayname %></p>
             </div>
-            <div>
-              <% seconds_from_creation = Date.today.to_time - post.created_at.to_time%>
-              <p>Days ago: <%= days_from_creation = (seconds_from_creation / 86400).to_i %></p>
-            </div>
-          </div>
-        <% end %>
-        <div> <%= post.body %> </div>
-         <% post.images.each do |image| %>
-           <%= image_tag image, style: "width: 100%;"%>
-          <% end %>
-       <div class="name-card-buttons">
+             <div class="name-card-buttons">
        <% if post.user == current_user%>
             <%= button_to post, method: :delete, class: "destroy-button" do%>
               <%= render "groups/destroy-svg"%>
@@ -88,17 +78,39 @@
             <% end %>
         <% end %>
        </div>
+            <div>
+              <p> <%=  time_ago_in_words_with_units(post.created_at) %></p>
+            </div>
+          </div>
+        <% end %>
+        <div> <%= post.body %> </div>
+         <% post.images.each do |image| %>
+           <%= image_tag image, style: "width: 100%;"%>
+          <% end %>
+
       </div>
     <% end %>
     <% end %>
   </div>
 
    <div class="group-events">
-     <h3>Events </h3>
-       <%= link_to "New Event", new_group_event_path(group) %>
+     <div class="events-header">
+       <h3>Events </h3>
+        <%= link_to new_group_event_path(group),  data: { turbo_frame: "remote_modal" }  do %>
+          <%= render "posts/create-svg"%>
+        <% end %>
+     </div>
        <% group.events.limit(3).each do |event| %>
          <%= link_to event.title, group_event_path(group, event), data: { turbo_frame: "remote_modal" } %>
+      <div class="event-options">
         <p>Created by: <%= event.user.email %></p>
+        <% if event.user == current_user || group.owners.include?(current_user)%>
+
+           <%= button_to group_event_path(group, event), method: :delete, class: "event-destroy-button" do%>
+                <%= render "groups/destroy-svg"%>
+              <% end %>
+         </div>
+        <% end %>
       <% end %>
    </div>
 
