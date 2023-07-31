@@ -52,6 +52,13 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @group = Group.find(params[:group_id])
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to @group, notice: 'Event was successfully deleted.'
+  end
+
   private
 
   def set_group

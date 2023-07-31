@@ -1,1 +1,4 @@
-<%= render "events/form" %>
+
+<%= render "remote_modal", title: "New Event" do %>
+    <%= render "events/form" , event: @event %>
+<% end %>

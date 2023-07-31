@@ -2,4 +2,40 @@
 <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
 
+<main>
 
+
+
+<div class="main-posts">
+  <% @posts.sort_by(&:created_at).reverse.each do |post| %>
+    <div class="main-post" style="display: flex; flex-direction:column; margin-bottom: 1rem;">
+      <div class="user-posted-info">
+        <div class="user-posted">
+          <p><%= post.user.displayname %></p>
+          <% if post.user.avatar.attached? %>
+            <%= image_tag(post.user.avatar, class: "profile-pic", style: "height: 2rem; width: 2rem; border-radius: 100%;") %>
+          <% else %>
+            No Profile Image
+          <% end %>
+        </div>
+        <div class="name-card-buttons">
+            <% if post.user == current_user %>
+                <%= button_to post, method: :delete, class: "destroy-button" do %>
+                  <%= render "groups/destroy-svg" %>
+                <% end %>
+                <%= button_to edit_post_path(post), method: :get, class: "edit-button" do %>
+                 <%= render "groups/edit-svg" %>
+                <% end %>
+            <% end %>
+          </div>
+        <p><%= time_ago_in_words_with_units(post.created_at) %></p>
+      </div>
+      <div><%= post.body %></div>
+      <% post.images.each do |image| %>
+        <%= image_tag image, style: "width: 100%;" %>
+      <% end %>
+
+    </div>
+  <% end %>
+</div>
+</main>

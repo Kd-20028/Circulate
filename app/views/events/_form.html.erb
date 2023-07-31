@@ -1,16 +1,15 @@
-<h1>New Event</h1>
  <%= form_with(model: [@group, @event]) do |f| %>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, style: "border-radius: .5rem; border: 1px solid lightgray;" %>
 
   <%= f.label :description %>
-  <%= f.text_area :description %>
+  <%= f.text_area :description, style: "border-radius: .5rem; border: 1px solid lightgray;" %>
 
   <%= f.label :start_time %>
-  <%= f.datetime_field :start_time %>
+  <%= f.datetime_field :start_time, style: "border-radius: .5rem; border: 1px solid lightgray;" %>
 
   <%= f.label :end_time %>
-  <%= f.datetime_field :end_time %>
+  <%= f.datetime_field :end_time, style: "border-radius: .5rem; border: 1px solid lightgray;" %>
 
   <%= f.submit "Create Event" %>
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_28_044850) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_31_183418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_044850) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_events_on_group_id"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "group_memberships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "approved", default: false
+    t.index ["group_id"], name: "index_group_memberships_on_group_id"
+    t.index ["user_id"], name: "index_group_memberships_on_user_id"
   end
 
   create_table "group_ownerships", force: :cascade do |t|
@@ -107,6 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_044850) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "events", "groups"
   add_foreign_key "events", "users"
+  add_foreign_key "group_memberships", "groups"
+  add_foreign_key "group_memberships", "users"
   add_foreign_key "group_ownerships", "groups"
   add_foreign_key "group_ownerships", "users"
   add_foreign_key "posts", "groups"

@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   resources :group_ownerships
 
-
+  resources :groups do
+    resources :group_memberships, only: [:create]
+    put '/approve_membership/:id', to: 'group_memberships#approve', as: :approve_membership
+    put '/reject_membership/:id', to: 'group_memberships#reject', as: :reject_membership
+  end
 
   resources :groups do
     resources :posts

@@ -149,29 +149,32 @@ body {
     display: grid;
     background-color: var(--clr-neutral-100);
     display: grid;
-    grid-template-columns: 2fr 4fr;
+    grid-template-columns: 1.5fr 4fr;
     grid-template-areas:
-    "sidebar header"
+    "sidebar main"
     "sidebar main";
     margin: 0;
+    gap: 0px;
   }
 
 
 .controller-events {
   display: grid;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: 1.5fr 4fr;
   grid-template-areas:
-  "sidebar header"
+  "sidebar main"
   "sidebar main";
   margin: 0;
+  gap: 0px;
 }
 
 .controller-search {
   display: grid;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: 1.5fr 4fr;
   grid-template-areas:
-  "sidebar header"
+  "sidebar main"
   "sidebar main";
   margin: 0;
+  gap: 0px;
 }
 
