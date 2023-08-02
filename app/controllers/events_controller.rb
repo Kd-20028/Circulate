@@ -48,6 +48,7 @@ class EventsController < ApplicationController
     authorize @event # Check authorization before rejecting an event
 
     if @event.update(status: :rejected)
+      @event.destroy
       redirect_to @event.group, notice: "Event was rejected."
     end
   end

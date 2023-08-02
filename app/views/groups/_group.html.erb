@@ -2,7 +2,11 @@
 
   <div class="name-card">
      <div class="name-card-upper">
+      <% if group.avatar.attached? %>
         <%= image_tag(group.avatar, class: "group-profile-pic")%>
+      <% else %>
+        No Profile Image
+      <% end %>
     </div>
     <div class="name-card-lower">
       <p>
@@ -58,14 +62,20 @@
 
   <div class="group-posts">
     <h3>Posts </h3>
-    <%= render partial: "posts/form", locals: { group: @group, post: @post }  %>
+    <% if group.users.include?(current_user)%>
+      <%= render partial: "posts/form", locals: { group: @group, post: @post }  %>
+    <% end %>
     <% if group.posts.any? %>
     <% group.posts.where.not(created_at: nil).sort_by(&:created_at).reverse.each do |post| %>
       <div class="group-post">
          <% if group.users.include?(current_user) && post.user.present?%>
           <div class="user-posted-info">
             <div class="user-posted">
-              <%= image_tag(post.user.avatar, class: "profile-pic", style: "height: 2rem; width: 2rem; border-radius: 100%;")%>
+              <% if post.user.avatar.attached? %>
+                <%= image_tag(post.user.avatar, class: "profile-pic", style: "height: 2rem; width: 2rem; border-radius: 100%;")%>
+              <% else %>
+                No image found
+              <% end %>
               <p><%= post.user.displayname %></p>
             </div>
              <div class="name-card-buttons">
@@ -96,16 +106,20 @@
    <div class="group-events">
      <div class="events-header">
        <h3>Events </h3>
+       <% if group.users.include?(current_user) %>
         <%= link_to new_group_event_path(group),  data: { turbo_frame: "remote_modal" }  do %>
           <%= render "posts/create-svg"%>
         <% end %>
-     </div>
-       <% group.events.limit(3).each do |event| %>
+       <% end %>
+        </div>
+       <% group.events.each do |event| %>
          <%= link_to event.title, group_event_path(group, event), data: { turbo_frame: "remote_modal" } %>
       <div class="event-options">
         <p>Created by: <%= event.user.email %></p>
         <% if event.user == current_user || group.owners.include?(current_user)%>
-
+          <% if event.pending? %>
+          <div>Pending approval</div>
+          <% end %>
            <%= button_to group_event_path(group, event), method: :delete, class: "event-destroy-button" do%>
                 <%= render "groups/destroy-svg"%>
               <% end %>
