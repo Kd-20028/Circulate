@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :group_ownerships
   has_many :owned_groups, through: :group_owernships, source: :group
   has_one_attached :avatar
-
+  has_many :comments
 
   validates :username, uniqueness: true
   validates :displayname, presence: true

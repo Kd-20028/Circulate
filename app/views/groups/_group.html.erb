@@ -60,6 +60,24 @@
     </ul>
   </div>
 
+  <style>
+  /* Hide the comments container by default */
+  .comments {
+    display: none;
+  }
+
+  /* Show the comments container when the "show" class is present */
+  .comments.show {
+    display: block;
+  }
+</style>
+
+
+
+
+
+
+
   <div class="group-posts">
     <h3>Posts </h3>
     <% if group.users.include?(current_user)%>
@@ -68,8 +86,10 @@
     <% if group.posts.any? %>
     <% group.posts.where.not(created_at: nil).sort_by(&:created_at).reverse.each do |post| %>
       <div class="group-post">
+
          <% if group.users.include?(current_user) && post.user.present?%>
           <div class="user-posted-info">
+
             <div class="user-posted">
               <% if post.user.avatar.attached? %>
                 <%= image_tag(post.user.avatar, class: "profile-pic", style: "height: 2rem; width: 2rem; border-radius: 100%;")%>
@@ -78,30 +98,50 @@
               <% end %>
               <p><%= post.user.displayname %></p>
             </div>
-             <div class="name-card-buttons">
-       <% if post.user == current_user%>
-            <%= button_to post, method: :delete, class: "destroy-button" do%>
-              <%= render "groups/destroy-svg"%>
-            <% end %>
-            <%= button_to edit_post_path(post), method: :get, class: "edit-button" do%>
-              <%= render "groups/edit-svg"%>
-            <% end %>
-        <% end %>
-       </div>
+
+            <div class="name-card-buttons">
+              <% if post.user == current_user%>
+                  <%= button_to post, method: :delete, class: "destroy-button" do%>
+                    <%= render "groups/destroy-svg"%>
+                  <% end %>
+                  <%= button_to edit_post_path(post), method: :get, class: "edit-button" do%>
+                    <%= render "groups/edit-svg"%>
+                  <% end %>
+              <% end %>
+              </div>
+
             <div>
               <p> <%=  time_ago_in_words_with_units(post.created_at) %></p>
             </div>
           </div>
         <% end %>
-        <div> <%= post.body %> </div>
-         <% post.images.each do |image| %>
+
+
+        <div>
+          <%= post.body %>
+           <% post.images.each do |image| %>
            <%= image_tag image, style: "width: 100%;"%>
           <% end %>
+        </div>
 
+
+           <%= button_tag "Show Comments", class: "show-comments-button" %>
+
+          <div class="comments">
+            <div class="new-comment">
+                <%= render partial: "comments/form", locals: { post: post, comment: Comment.new } %>
+            </div>
+            <% post.comments.each do |comment|%>
+              <%= render partial: "comments/comment", locals: {comment: comment}%>
+            <% end %>
+          </div>
       </div>
     <% end %>
+
     <% end %>
   </div>
+
+
 
    <div class="group-events">
      <div class="events-header">

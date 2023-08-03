@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
+  resources :comments
   get 'search', to: "search#index"
   root 'pages#home'
   resources :posts do
-    collection do
-      get :new_public
-      post :create_public
-    end
+    resources :comments
   end
 
   resources :group_ownerships
