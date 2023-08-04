@@ -1,4 +1,4 @@
-<%= form_with(model: [post, comment], url: post_comments_path(post)) do |form| %>
+<%= form_with(model: [post, comment], url: post_comments_path(post), class: "comment-form") do |form| %>
   <% if comment.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -12,12 +12,34 @@
   <% end %>
 
 
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="new-comment-container">
+    <div>
+      <%= form.text_area :body, class: "new-comment-text", placeholder: "Write your comment here..." %>
+    </div>
+    <div>
+      <%= button_tag type: :submit, class: "new-comment-button" do %>
+          <%= render "posts/create-svg" %> <!-- Replace this with your custom icon -->
+        <% end %>
+    </div>
   </div>
 <% end %>
+
+<style>
+
+  .new-comment-container {
+    border: 1px solid lightgray;
+    padding: .5rem;
+
+  }
+
+  .new-comment-text {
+    width: 100%;
+    padding: .5rem;
+    border: none;
+  }
+
+  .new-comment-button {
+    border: none;
+    background: transparent;
+  }
+</style>

@@ -6,7 +6,7 @@
 
 
 
-<div class="main-posts">
+<div class="main-posts group-post">
   <% @posts.sort_by(&:created_at).reverse.each do |post| %>
     <div class="main-post" style="display: flex; flex-direction:column; margin-bottom: 1rem;">
       <div class="user-posted-info">
@@ -23,7 +23,7 @@
                 <%= button_to post, method: :delete, class: "destroy-button" do %>
                   <%= render "groups/destroy-svg" %>
                 <% end %>
-                <%= button_to edit_post_path(post), method: :get, class: "edit-button" do %>
+                <%= button_to edit_post_path(post), method: :get, class: "edit-button", style: "border: 1px solid lightgray; background-color: transparent; " do %>
                  <%= render "groups/edit-svg" %>
                 <% end %>
             <% end %>
@@ -34,6 +34,19 @@
       <% post.images.each do |image| %>
         <%= image_tag image, style: "width: 100%;" %>
       <% end %>
+
+       <%= button_tag "Show Comments", class: "show-comments-button" %>
+
+          <div class="comments">
+            <div class="new-comment">
+                <%= render partial: "comments/form", locals: { post: post, comment: Comment.new } %>
+            </div>
+            <div class="comment">
+              <% post.comments.each do |comment|%>
+                <%= render partial: "comments/comment", locals: {comment: comment}%>
+              <% end %>
+            </div>
+          </div>
 
     </div>
   <% end %>

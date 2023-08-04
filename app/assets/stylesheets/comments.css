@@ -1,0 +1,27 @@
+  /* Hide the comments container by default */
+  .comments {
+    display: none;
+  }
+
+  /* Show the comments container when the "show" class is present */
+  .comments.show {
+    display: block;
+  }
+
+  .show-comments-button {
+    background-color: transparent;
+    border: none;
+  }
+
+  .show-comments-button:hover {
+    text-decoration: underline;
+  }
+
+  .comment {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .comment-container {
+    display: flex;
+  }

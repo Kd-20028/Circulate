@@ -54,10 +54,13 @@
 .group-events {
     grid-area: events;
     overflow-y: auto;
+    max-height: 275px;
 }
 
 .group-members {
     grid-area: members;
+    overflow-y: auto;
+    max-height: 275px;
 }
 
 h3 {
@@ -97,7 +100,7 @@ h3 {
     gap: 10px;
 }
 
-.destroy-button, .controller-groups .edit-button, .controller-groups .leave-group-button, .event-destroy-button, .join-group-button {
+.destroy-button,  .edit-button, .controller-groups .leave-group-button, .event-destroy-button, .join-group-button {
     border-radius: 12px;
     background-color: white;
     border: 1px solid lightgray;
