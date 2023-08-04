@@ -33,7 +33,7 @@
             <%= button_to @group, method: :delete, class: "destroy-button" do%>
               <%= render "groups/destroy-svg"%>
             <% end %>
-            <%= button_to edit_group_path(@group), method: :get, class: "edit-button" do %>
+            <%= button_to edit_group_path(@group), method: :get, class: "edit-button",  data: { turbo_frame: "remote_modal" }  do %>
               <%= render "groups/edit-svg"%>
             <% end %>
         <% end %>

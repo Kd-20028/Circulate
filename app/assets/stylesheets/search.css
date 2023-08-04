@@ -1,7 +1,7 @@
 .search-header {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     font-size: var(--fs-800);
 }
 
@@ -21,6 +21,8 @@
     text-align: center;
     border-bottom: 1px solid #ccc;
   }
+
+
 
   thead th {
     background-color: #f2f2f2;

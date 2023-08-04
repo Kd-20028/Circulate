@@ -23,7 +23,7 @@
                 <%= button_to post, method: :delete, class: "destroy-button" do %>
                   <%= render "groups/destroy-svg" %>
                 <% end %>
-                <%= button_to edit_post_path(post), method: :get, class: "edit-button", style: "border: 1px solid lightgray; background-color: transparent; " do %>
+                <%= button_to edit_post_path(post), method: :get, class: "edit-button", data: { turbo_frame: "remote_modal" }  do %>
                  <%= render "groups/edit-svg" %>
                 <% end %>
             <% end %>
