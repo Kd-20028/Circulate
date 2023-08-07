@@ -1,0 +1,78 @@
+<main class="profile-main">
+      <div class="user-profile-info">
+        <div class="profile-upper">
+
+        </div>
+         <%= image_tag @user.avatar, class: "avatar" if @user.avatar.attached? %>
+        <div class="profile-lower">
+
+            <div class="profile-displayname">
+                <%= @user.displayname %>
+                <div class="groups-number"><%= @user.groups.count %> Groups </div>
+                <div class="group-avatars">
+                    <% @user.groups.each do |group| %>
+                        <% if group.avatar.attached? %>
+                             <%= image_tag group.avatar, class: "profile-group-avatar" if group.avatar.attached? %>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+      </div>
+
+
+      <h3 style="margin-top: 2rem; "><%= @user.posts.count %> Posts </h3>
+      <div class="profile-group-posts">
+    <% if @user.posts.any? %>
+    <% @user.posts.where.not(created_at: nil).sort_by(&:created_at).reverse.each do |post| %>
+      <div class="group-post">
+
+
+          <div class="user-posted-info">
+
+            <div class="name-card-buttons">
+              <% if post.user == current_user%>
+                  <%= button_to post, method: :delete, class: "destroy-button" do%>
+                    <%= render "groups/destroy-svg"%>
+                  <% end %>
+                  <%= button_to edit_post_path(post), method: :get, class: "edit-button", data: { turbo_frame: "remote_modal" } do%>
+                    <%= render "groups/edit-svg" %>
+                  <% end %>
+              <% end %>
+              </div>
+
+            <div>
+              <p> <%=  time_ago_in_words_with_units(post.created_at) %></p>
+            </div>
+          </div>
+
+
+
+        <div>
+          <%= post.body %>
+           <% post.images.each do |image| %>
+           <%= image_tag image, style: "width: 100%;"%>
+          <% end %>
+        </div>
+
+
+           <%= button_tag "Show Comments", class: "show-comments-button" %>
+
+          <div class="comments">
+            <div class="new-comment">
+                <%= render partial: "comments/form", locals: { post: post, comment: Comment.new } %>
+            </div>
+            <div class="comment">
+              <% post.comments.each do |comment|%>
+                <%= render partial: "comments/comment", locals: {comment: comment}%>
+              <% end %>
+            </div>
+          </div>
+      </div>
+    <% end %>
+
+    <% end %>
+  </div>
+
+</main>

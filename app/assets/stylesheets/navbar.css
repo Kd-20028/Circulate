@@ -92,7 +92,6 @@
     font-size: 1rem;
     border: 1px solid lightgray;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
-
   }
 
   .dropdowns li + li {
@@ -117,7 +116,6 @@
   input[type=checkbox] {
     display: none;
   }
-
 
   .groups {
     width: 100%;
@@ -184,8 +182,6 @@
     padding: 5px;
     border-radius: .5rem;
   }
-
-
 
   .search-button svg {
     height: 100%;

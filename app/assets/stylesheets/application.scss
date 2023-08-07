@@ -178,3 +178,13 @@ body {
   gap: 0px;
 }
 
+.controller-user_profile {
+  display: grid;
+  grid-template-columns: 1.5fr 4fr;
+  grid-template-areas:
+  "sidebar main"
+  "sidebar main";
+  margin: 0;
+  gap: 0px;
+}
+

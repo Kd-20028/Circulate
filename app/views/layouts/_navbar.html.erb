@@ -27,7 +27,7 @@
            <% if current_user.avatar.attached? %>
             <%= image_tag(current_user.avatar, class: "nav-profile-pic")%>
           <% end %>
-                <a href="/">Profile</a>
+                <%= link_to "Profile", user_profile_path(current_user)%>
 
         </li>
 

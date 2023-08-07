@@ -142,6 +142,7 @@ a {
 
 .log-button:hover, .log-link:hover {
   background-color: hsl(24, 100%, 49%);
+  color: white;
 }
 
 .sign-up-button, .cancel-account-button, .leave-group-button {
@@ -156,6 +157,7 @@ a {
 
 .sign-up-button:hover {
   background-color: rgb(38, 206, 63);
+  color: white;
 }
 
 hr {
@@ -179,6 +181,7 @@ hr {
 
 .cancel-account-button:hover {
   background-color: rgb(190, 53, 53);
+  color: white;
 }
 
 .logo {

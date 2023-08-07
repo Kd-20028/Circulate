@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  get 'user_profile/show'
   resources :comments
   get 'search', to: "search#index"
+  get 'profile/:id', to: 'user_profile#show', as: 'user_profile'
+
   root 'pages#home'
   resources :posts do
     resources :comments

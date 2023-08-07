@@ -1,11 +1,6 @@
 
-main {
-    display: grid;
-    grid-template-areas:
-    "posts notifications"
-    "posts suggested-community"
-    "posts owned-circles";
-}
+
+
 
 .main-posts {
     display: flex;
@@ -25,4 +20,10 @@ main {
 
 .controller-pages {
     gap: 0px;
+}
+
+.controller-pages h3 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }

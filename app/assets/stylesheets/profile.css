@@ -1,0 +1,87 @@
+.avatar {
+    border-radius: 100%;
+    height: 12rem;
+    width: 12rem;
+    border: 3px solid lightgray;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+
+}
+
+.profile-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+.user-profile-info {
+    margin-top: 1rem;
+    width: 90%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    border-radius: 1rem;
+    border: 1px solid lightgray;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+
+}
+
+.profile-upper {
+    height: 45%;
+    background-color: var(--clr-primary-400);
+    border-radius: 1rem;
+}
+
+.profile-lower {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.profile-displayname {
+    margin-top: 7rem;
+    font-size: var(--fs-800);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.groups-number {
+    font-size: 1rem;
+    color: gray;
+}
+
+.group-avatars {
+    display: flex;
+}
+
+.profile-group-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 100%;
+    border: 2px solid white;
+}
+
+ .profile-group-posts {
+    width: 90%;
+    background-color: transparent;
+}
+
+.controller-user_profile .name-card-buttons {
+    justify-content: flex-start;
+}
+
+.controller-user_profile .group-post {
+    background-color: white;
+}
