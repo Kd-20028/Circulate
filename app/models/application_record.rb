@@ -1,8 +1,7 @@
 class ApplicationRecord < ActiveRecord::Base
 
   primary_abstract_class
-  include Pundit
-
+  include Pundit::Authorization
   private
 
   def pundit_user
