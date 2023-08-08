@@ -24,22 +24,6 @@
 
 }
 
-@media (max-width: 60em) {
-  .controller-users {
-    grid-template-rows: auto auto;
-    gap: 50px;
-  }
-
-  .input-section {
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  .info-section {
-    justify-content: flex-end;
-    align-items: center;
-  }
-}
 
 body {
   font-family: "Gill Sans";

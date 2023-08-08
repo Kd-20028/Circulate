@@ -55,6 +55,8 @@
     grid-area: events;
     overflow-y: auto;
     max-height: 275px;
+    display: flex;
+    flex-direction: column;
 }
 
 .group-members {
@@ -246,6 +248,7 @@ h3 {
   .event-options {
     width: 100%;
     justify-content: space-between;
+    flex-direction: column;
   }
 
 
