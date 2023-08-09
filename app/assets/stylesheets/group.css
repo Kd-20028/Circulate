@@ -248,7 +248,6 @@ h3 {
   .event-options {
     width: 100%;
     justify-content: space-between;
-    flex-direction: column;
   }
 
 
